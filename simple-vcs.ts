@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import { program } from 'commander';
-import { init } from './commands/init';
-import { add } from './commands/add';
+import { init } from "./commands/init";
+import { add } from "./commands/add";
 import { commit } from './commands/commit';
-import { log } from './commands/log';
+import { log } from './commands/logs';
 import { branch } from './commands/branch';
 import { merge } from './commands/merge';
 import { diff } from './commands/diff';
