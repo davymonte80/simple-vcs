@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 
-export function add(files: string[]) {
+export function add(files: string[]): void {
   const repoPath = path.join(process.cwd(), '.simple-vcs');
   
   if (!fs.existsSync(repoPath)) {
@@ -34,7 +34,8 @@ export function add(files: string[]) {
     index[file] = hash;
   });
 
-  fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
-  console.log(`Added ${files.length} file(s) to the staging area`);
+fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
+
+ // console.log(`Added ${files.length} file(s) to the staging area`);
 }
 
