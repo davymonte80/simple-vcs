@@ -1,3 +1,13 @@
+/**
+ * Initializes a new simple version control system repository.
+ * 
+ * This function creates the necessary directory structure and files for a new repository.
+ * It will create a `.simple-vcs` directory in the current working directory.
+ * 
+ *
+ * If a repository already exists in the current working directory, an error message will be logged and the function will return early.
+ * 
+ */
 import fs from 'fs';
 import path from 'path';
 

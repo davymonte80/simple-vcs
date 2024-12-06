@@ -1,6 +1,25 @@
 import fs from 'fs';
 import path from 'path';
 
+/**
+ * Creates a new branch or lists existing branches in a simple-vcs repository.
+ *
+ * @param {string} [name] - The name of the branch to create. If not provided, lists all branches.
+ *
+ * @remarks
+ * - If the repository is not initialized, it will print an error message.
+ * - If the branch name is provided and already exists, it will print an error message.
+ * - If the branch name is provided and does not exist, it will create a new branch pointing to the current commit.
+ *
+ * @example
+ * ```typescript
+ * // List all branches
+ * branch();
+ *
+ * // Create a new branch named 'feature'
+ * branch('feature');
+ * ```
+ */
 export function branch(name?: string) {
   const repoPath = path.join(process.cwd(), '.simple-vcs');
   
