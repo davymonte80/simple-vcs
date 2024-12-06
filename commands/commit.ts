@@ -3,6 +3,11 @@ import path from 'path';
 import crypto from 'crypto';
 
 export function commit(message: string) {
+  /**
+   * Constructs the path to the repository's .simple-vcs directory.
+   *
+   * @constant {string} repoPath - The path to the .simple-vcs directory within the current working directory.
+   */
   const repoPath = path.join(process.cwd(), '.simple-vcs');
   
   if (!fs.existsSync(repoPath)) {
