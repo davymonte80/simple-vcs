@@ -2,20 +2,24 @@ import fs from 'fs';
 import path from 'path';
 
 export function merge(branchName: string) {
+
   // Get the path to the repository
   const repoPath = path.join(process.cwd(), '.simple-vcs'); 
   
+
   if (!fs.existsSync(repoPath)) {
     // Check if the repository exists
     console.error('Not a simple-vcs repository'); 
     return;
   }
+
 // Get the path to the HEAD file
   const headPath = path.join(repoPath, 'HEAD'); 
   // Read the current HEAD
   const head = fs.readFileSync(headPath, 'utf-8').trim(); 
-  let currentBranch = '';
 
+  let currentBranch = '';
+  // Check if HEAD is pointing to a branch
   if (head.startsWith('ref: ')) {
     // Extract the current branch name from HEAD
     currentBranch = head.slice(5).split('/').pop() || ''; 
@@ -24,17 +28,22 @@ export function merge(branchName: string) {
     console.error('Not on a branch'); 
     return;
   }
-// Get the path to the branch to be merged
-  const branchPath = path.join(repoPath, 'refs', 'heads', branchName); 
+
+  // Get the path to the HEAD file
+  const branchPath = path.join(repoPath, 'refs', 'heads', branchName);
+
   if (!fs.existsSync(branchPath)) {
     // Check if the branch exists
     console.error(`Branch '${branchName}' does not exist`); 
     return;
   }
-// Read the current commit hash
-  const currentCommit = fs.readFileSync(path.join(repoPath, head.slice(5)), 'utf-8').trim(); 
-  // Read the commit hash of the branch to be merged
-  const branchCommit = fs.readFileSync(branchPath, 'utf-8').trim(); 
+
+
+  // Read the current commit hash from the current branch
+  const currentCommit = fs.readFileSync(path.join(repoPath, head.slice(5)), 'utf-8').trim();
+  // Read the commit hash from the branch to be merged
+  const branchCommit = fs.readFileSync(branchPath, 'utf-8').trim();
+// Check if the current branch is already up-to-date with the branch to be merged
 
   if (currentCommit === branchCommit) {
     // If the commits are the same, print a message
